@@ -1,53 +1,48 @@
 <div class="container">
     <h1>{{title}}</h1>
     <div id="chart"></div>
-    {{!-- <pre>{{{json coffeeData}}}</pre> --}}
-    {{!-- <div id="chart"></div> --}}
     <script>
         // Use the passed data
         var passedData = {{{json coffeeData}}}; // Handlebars unescapes HTML-safe JSON
-        
-        //console.log(passedData.data);
-        var filteredData = passedData.data.filter(item => item.date !== null && item.value !== ".")
-        .sort((a,b) => new Date(a.date) - new Date(b.date));
+
+        // Filter, sort, and map data for chart series
+        var filteredData = [{
+            name: "Coffee Series 1",
+            data: passedData.data
+                .filter(item => item.date !== null && item.value !== ".")
+                .sort((a, b) => new Date(a.date) - new Date(b.date))
+                .map(item => ({
+                    x: new Date(item.date),
+                    y: parseFloat(item.value)
+                }))
+        }];
+
+        // Log filtered data to console
         console.log(filteredData);
-        //var sortedData = filteredData()
-        var values = filteredData.map(item => parseFloat(item.value)/100);
-        var dates = filteredData.map(item=> item.date);
-        console.log(JSON.stringify(Date.parse(dates.map(item=> new Date(item))[0])));
+
+        // Chart configuration
         var options = {
-            series: [{
-                name: "Desktops",
-                data: values
-            }],
             chart: {
-                height: 350,
-                type: 'line',
-                zoom: {
-                    enabled: false
+                height: 380,
+                width: "100%",
+                type: "area",
+                animations: {
+                    initialAnimation: {
+                        enabled: true
+                    }
                 }
             },
-            dataLabels: {
+            series: filteredData,
+            xaxis: {
+                type: "datetime"
+            },
+            dataLabels:{
                 enabled: false
             },
-            stroke: {
-                curve: 'straight'
-            },
-            title: {
-                text: 'Product Trends by Month',
-                align: 'left'
-            },
-            grid: {
-                row: {
-                    colors: ['#f3f3f3', 'transparent'],
-                    opacity: 0.5
-                },
-            },
-            xaxis: {
-                categories: dates,
-            }
+            
         };
 
+        // Initialize and render the chart
         var chart = new ApexCharts(document.querySelector("#chart"), options);
         chart.render();
     </script>
