@@ -4,7 +4,8 @@
     <script>
         // Use the passed data
         var passedData = {{{json coffeeData}}}; // Handlebars unescapes HTML-safe JSON
-
+        console.log("this is what it looks liek when it is passed");
+        console.log(passedData);
         // Filter, sort, and map data for chart series
         var filteredData = [{
             name: "Coffee Series 1",
@@ -18,6 +19,7 @@
         }];
 
         // Log filtered data to console
+        console.log("this is what it looks liek when it is filtered");
         console.log(filteredData);
 
         // Chart configuration

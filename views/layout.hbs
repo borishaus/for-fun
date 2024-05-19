@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html data-bs-theme="light">
   <head>
     <title>{{title}}</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
@@ -7,7 +7,9 @@
     <script src="/apexcharts/apexcharts.min.js"></script>
   </head>
   <body>
+    {{> navbar }}
     {{{body}}}
+    {{!-- {{> footer }} --}}
     <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
     
     {{!-- <script src="/chart/chart.js"></script> --}}
