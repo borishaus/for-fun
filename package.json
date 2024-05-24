@@ -1,25 +1,24 @@
 {
-  "name": "expressapp",
-  "version": "0.0.0",
-  "private": true,
+  "name": "for-fun",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
   "scripts": {
-    "start": "node ./bin/www",
-    "dev": "nodemon ./bin/www"
+    "dev": "nodemon app.js",
+    "build-css": "tailwindcss -i ./src/tailwind.css -o ./public/build/tailwind.css --minify"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer": "^10.4.19",
+    "nodemon": "^3.1.0",
+    "postcss": "^8.4.38",
+    "tailwindcss": "^3.4.3"
   },
   "dependencies": {
-    "apexcharts": "^3.49.1",
-    "axios": "^1.6.8",
-    "bootstrap": "^5.3.3",
-    "bootstrap-icons": "^1.11.3",
-    "cookie-parser": "~1.4.4",
-    "debug": "~2.6.9",
     "express": "^4.19.2",
-    "hbs": "^4.2.0",
-    "http-errors": "~1.6.3",
-    "moment": "^2.30.1",
-    "morgan": "~1.9.1"
-  },
-  "devDependencies": {
-    "nodemon": "^3.1.0"
+    "htmx.org": "^1.9.12"
   }
 }
