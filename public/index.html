@@ -6,7 +6,6 @@
     <title>HTMX Course</title>
     <!-- <link rel="stylesheet" href="/build/tailwind.min.css"> -->
     <link rel="stylesheet" href="/build/tailwind.css">
-
     <script src="/htmx/htmx.min.js"></script>
   </head>
   <body class="bg-gray-100">
@@ -29,9 +28,8 @@
         </div>
       </form>
     </div>
-    
-      <div id="color-demo" class="smooth" style="color:red"
-            hx-get="/colors" hx-swap="outerHTML" hx-trigger="every .5s">
+      <div id="color-demo" class="transition-colors" style="color:red"
+            hx-get="/colors" hx-swap="outerHTML" hx-trigger="every 2s">
         Color Swap Demo
       </div>
   </body>
