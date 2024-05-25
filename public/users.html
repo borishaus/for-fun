@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HTMX Course</title>
+    <!-- <link rel="stylesheet" href="/build/tailwind.min.css"> -->
+    <link rel="stylesheet" href="/build/tailwind.css">
+    <script src="/htmx/htmx.min.js"></script>
+  </head>
+  <body>
+    <div class="text-center">
+      <h1 class="text-4xl font-bold my-5">Hello</h1>
+      <div class="text-center">
+        <button hx-get="/users"  
+        hx-target="#users" 
+        hx-confirm="are you sure?"
+        hx-vals='{"limit":5}'
+        hx-indicator="#loading" 
+        class="bg-blue-500 text-white py-2 px-3 rounded-lg my-5">
+          fetch users
+        </button>
+        <span class="htmx-indicator" id="loading">
+            <img src="img/loading.gif" alt="loading..." class="m-auto h-10">
+        </span>
+        <div id="users"></div>
+      </div>
+    </div>
+  </body>
+</html>

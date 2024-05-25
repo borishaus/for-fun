@@ -6,17 +6,33 @@
     <title>HTMX Course</title>
     <!-- <link rel="stylesheet" href="/build/tailwind.min.css"> -->
     <link rel="stylesheet" href="/build/tailwind.css">
+
     <script src="/htmx/htmx.min.js"></script>
   </head>
-  <body>
-    <div class="text-center">
-      <h1 class="text-4xl font-bold my-5">Hello</h1>
-      <div class="text-center">
-        <button hx-get="/users"  hx-target="#users" hx-confirm="are you sure?" class="bg-blue-500 text-white py-2 px-3 rounded-lg my-5">
-          fetch users
-        </button>
-        <div id="users"></div>
-      </div>
+  <body class="bg-gray-100">
+    <div class="bg-white p-4 border rounded-lg max-w-lg m-auto">
+      <h1 class="text-2xl font-bold mb-4">Temperature Converter</h1>
+      <form
+        hx-trigger="submit"
+        hx-post="/convert"
+        hx-target="#result"
+        hx-indicator="#loading"
+      >
+        <label for="fahrenheit">Fahrenheit</label>
+        <input type="number" id="fahrenheit" name="fahrenheit" class="border p-2 rounded" value="32" required>
+        <button type="submit"
+        class="bg-blue-500 text-white px-4 py-2 rounded">Convert</button>
+        <div id="result" class="mt-6 text-xl">
+          <span class="htmx-indicator" id="loading">
+            <img src="img/loading.gif" alt="Loading..." class="m-auto h-10">
+          </span> 
+        </div>
+      </form>
     </div>
+    
+      <div id="color-demo" class="smooth" style="color:red"
+            hx-get="/colors" hx-swap="outerHTML" hx-trigger="every .5s">
+        Color Swap Demo
+      </div>
   </body>
 </html>

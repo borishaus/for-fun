@@ -21,14 +21,14 @@ app.use(express.static('public')); // Serve static files from the 'public' direc
 
 // Serve HTMX from node_modules
 app.use('/htmx', express.static(path.join(__dirname, 'node_modules', 'htmx.org', 'dist'))); // Serve HTMX files from node_modules
-
+//app.set('view engine', 'ejs');
 // Function to load routes dynamically
 async function loadRoutes() {
   const routesPath = path.join(__dirname, 'routes'); // Define the path to the routes directory
   const files = fs.readdirSync(routesPath); // Read the contents of the routes directory
 
   for (const file of files) { // Iterate over each file in the routes directory
-    if (file.endsWith('.js')) { // Check if the file ends with '.js'
+    if (file.endsWith('.js') || file.endsWith('.ts')) { // Check if the file ends with '.js'
       try {
         const { default: route } = await import(`./routes/${file}`); // Dynamically import the route file
         app.use(route); // Use the route in the Express application
@@ -48,4 +48,4 @@ async function startServer() {
   });
 }
 
-startServer(); // Call the function to start the server
+startServer(); // Call the function to start the servernpm stage .
